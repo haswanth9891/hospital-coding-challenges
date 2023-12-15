@@ -24,6 +24,8 @@ public class Appointment {
 
     // Getters and setters for Appointment class
     // Getters
+    
+    
     public int getAppointmentId() {
         return appointmentId;
     }
