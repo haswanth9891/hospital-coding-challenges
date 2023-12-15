@@ -1,0 +1,59 @@
+create database hospitalmanagment;
+use hospitalmanagment;
+-- Patient Table
+CREATE TABLE Patient (
+    patientId INT PRIMARY KEY,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    dateOfBirth DATE,
+    gender VARCHAR(10),
+    contactNumber VARCHAR(15),
+    address VARCHAR(255)
+);
+
+-- Doctor Table
+CREATE TABLE Doctor (
+    doctorId INT PRIMARY KEY,
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    specialization VARCHAR(100),
+    contactNumber VARCHAR(15)
+);
+
+-- Appointment Table
+CREATE TABLE Appointment (
+    appointmentId INT PRIMARY KEY,
+    patientId INT,
+    doctorId INT,
+    appointmentDate DATE,
+    description VARCHAR(255),
+    FOREIGN KEY (patientId) REFERENCES Patient(patientId),
+    FOREIGN KEY (doctorId) REFERENCES Doctor(doctorId)
+);
+-- Inserting sample data into Patient table
+INSERT INTO Patient (patientId, firstName, lastName, dateOfBirth, gender, contactNumber, address)
+VALUES
+(1, 'John', 'Doe', '1990-01-15', 'Male', '1234567890', '123 Main St'),
+(2, 'Jane', 'Smith', '1985-05-22', 'Female', '9876543210', '456 Oak St'),
+(3, 'Bob', 'Johnson', '1978-11-10', 'Male', '5553339999', '789 Pine St'),
+(4, 'Alice', 'Williams', '1995-03-18', 'Female', '1112223333', '101 Maple St'),
+(5, 'Charlie', 'Brown', '1982-08-05', 'Male', '4445556666', '202 Cedar St');
+select*from  Patient;
+-- Inserting sample data into Doctor table
+INSERT INTO Doctor (doctorId, firstName, lastName, specialization, contactNumber)
+VALUES
+(101, 'Dr. Emily', 'Anderson', 'Cardiologist', '9998887777'),
+(102, 'Dr. Michael', 'Clark', 'Pediatrician', '7776665555'),
+(103, 'Dr. Sarah', 'Miller', 'Orthopedic Surgeon', '8887776666'),
+(104, 'Dr. David', 'Wilson', 'Dermatologist', '6665554444'),
+(105, 'Dr. Jessica', 'Taylor', 'Psychiatrist', '5554443333');
+select*from Doctor;
+-- Inserting sample data into Appointment table
+INSERT INTO Appointment (appointmentId, patientId, doctorId, appointmentDate, description)
+VALUES
+(1001, 1, 101, '2023-01-20', 'Routine checkup'),
+(1002, 2, 102, '2023-02-15', 'Vaccination appointment'),
+(1003, 3, 103, '2023-03-10', 'Consultation for knee pain'),
+(1004, 4, 104, '2023-04-05', 'Skin allergy checkup'),
+(1005, 5, 105, '2023-05-01', 'Mental health assessment');
+select*from Appointment;
